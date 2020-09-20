@@ -1,2 +1,3 @@
 *.stl
 notes/
+esphome/secrets.yaml
