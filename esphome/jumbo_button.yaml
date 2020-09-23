@@ -45,6 +45,11 @@ output:
     pin: D6
     id: gpio_d6
 
+wled:
+
+e131:
+  method: unicast
+
 light:
   - platform: fastled_spi
     chipset: APA102
@@ -53,3 +58,9 @@ light:
     num_leds: 3
     rgb_order: BGR
     name: "Jumbobutton Lights"
+    effects:
+      - addressable_rainbow:
+      - wled:
+      - e131:
+          universe: 1
+          channels: RGB
