@@ -35,8 +35,23 @@ binary_sensor:
       inverted: True
       mode: INPUT_PULLUP
     name: "Jumbo Button"
-    filters:
-      - delayed_on: 5ms
+    on_multi_click:
+    - timing:
+      - ON for at most 500ms
+      - OFF for at least 0.1s
+      then:
+        - homeassistant.event:
+            event: esphome.jumbo_button_pressed
+            data:
+              title: Jumbo button was short-pressed
+    - timing:
+      - ON for 500ms to 2s
+      - OFF for at least 0.1s
+      then:
+        - homeassistant.event:
+            event: esphome.jumbo_button_long_pressed
+            data:
+              title: Jumbo button was long-pressed
 
 # Because we don't have a spare ground pin, use an output set to off
 # as ground.
