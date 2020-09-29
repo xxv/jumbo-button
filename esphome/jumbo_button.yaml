@@ -38,15 +38,14 @@ binary_sensor:
     on_multi_click:
     - timing:
       - ON for at most 500ms
-      - OFF for at least 0.1s
+      - OFF for at least 100ms
       then:
         - homeassistant.event:
             event: esphome.jumbo_button_pressed
             data:
               title: Jumbo button was short-pressed
     - timing:
-      - ON for 500ms to 2s
-      - OFF for at least 0.1s
+      - ON for at least 500ms
       then:
         - homeassistant.event:
             event: esphome.jumbo_button_long_pressed
